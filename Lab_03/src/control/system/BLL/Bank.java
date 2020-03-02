@@ -3,94 +3,108 @@ package control.system.BLL;
 import control.system.DAL.Entities.*;
 import control.system.DAL.Interfaces.IRepository;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+
 public class Bank
 {
-    private IRepository<Account> repository;
-
-    public Bank(IRepository<Account> repository)
-    {
-
-    }
+    private IRepository<Account> repository = new AccountRepository();
+    private static int id = 0;
 
     public void OpenAccount(String fullName, AccountType type)
     {
-        int firstNameIndex = 0;
-        int lastNameIndex = 1;
+        var firstNameIndex = 0;
+        var lastNameIndex = 1;
+        var names = fullName.split(" ");
+        this.id++;
 
-        char[] separators = new char[] { ' ' };
+        if (names.length < 2)
+        {
+            throw new IllegalArgumentException("Wrong name format!");
+        }
 
-        string[] names = fullName.Split(separators, 2) ?? throw new ArgumentNullException(nameof(fullName));
+        if (names[firstNameIndex].isBlank())
+        {
+            throw new NullPointerException();
+        }
 
-        int id = creator.GenerateId();
+        if (names[lastNameIndex].isBlank())
+        {
+            throw new NullPointerException();
+        }
 
         Account account;
 
         switch (type)
         {
-            case AccountType.Base:
+            case Base:
                 account = new BaseAccount(id, names[firstNameIndex], names[lastNameIndex]);
                 break;
-            case AccountType.Gold:
+            case Gold:
                 account = new GoldAccount(id, names[firstNameIndex], names[lastNameIndex]);
                 break;
-            case AccountType.Silver:
+            case Silver:
                 account = new SilverAccount(id, names[firstNameIndex], names[lastNameIndex]);
                 break;
-            case AccountType.Platinum:
-                account = new PlatinumAccount(id, names[firstNameIndex], names[lastNameIndex]);
-                break;
             default:
-                throw new ArgumentException(nameof(type));
+                throw new IllegalArgumentException();
         }
 
         this.repository.Create(account);
     }
 
-    public IEnumerable<Account> GetAllAccounts()
+    public Iterable<Account.AccountDTO> GetAllAccounts()
     {
-        return repository.GetAll();
+        var accountsDTO= new ArrayList<Account.AccountDTO>();
+
+        for (var account : repository.GetAll())
+        {
+            accountsDTO.add(account.getDTO());
+        }
+
+        return accountsDTO;
     }
 
-    public void WithdrawAccount(int id, decimal payment)
+    public void WithdrawAccount(int id, BigDecimal payment)
     {
         var account = repository.Get(id);
-        if (account.Status == AccountStatus.Close)
+        if (account.getStatus() == Status.Close)
         {
-            throw new ArgumentException(nameof(account));
+            throw new IllegalArgumentException("Account closed.");
         }
-        if (payment < 0)
+        if (payment.compareTo(new BigDecimal(0)) < 0)
         {
-            throw new ArgumentException(nameof(payment));
+            throw new IllegalArgumentException("Payment must be positive.");
         }
-        if (payment > account.Amount)
+        if (payment.compareTo(account.getMoneyAmount()) > 0)
         {
-            throw new ArgumentException(nameof(payment));
+            throw new IllegalArgumentException("Insufficient funds.");
         }
 
         account.Withdraw(payment);
-        repository.Update(account);
+        //repository.Update(account);
     }
 
-    public void DepositAccount(int id, decimal payment)
+    public void DepositAccount(int id, BigDecimal payment)
     {
         var account = repository.Get(id);
-        if (account.Status == AccountStatus.Close)
+        if (account.getStatus() == Status.Close)
         {
-            throw new ArgumentException(nameof(account));
+            throw new IllegalArgumentException("Account closed.");
         }
-        if (payment < 0)
+        if (payment.compareTo(new BigDecimal(0)) < 0)
         {
-            throw new ArgumentException(nameof(payment));
+            throw new IllegalArgumentException("Payment must be positive.");
         }
 
         account.Deposit(payment);
-        repository.Update(account);
+        //repository.Update(account);
     }
 
     public void CloseAccount(int id)
     {
         var account = repository.Get(id);
-        account.Close();
-        repository.Update(account);
+        account.setStatus(Status.Close);
+        //repository.Update(account);
     }
 }
