@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <parameter name="amountPlus" value="1000000" />
+    <parameter name="amountMinus" value="500000" />
+    <test verbose="2" preserve-order="true" name="D:/Education/Programming/4 sem/Java/��������/Java/Lab_08">
+        <classes>
+            <class name="FirstTestCase"></class>
+            <class name="SecondTestCase"></class>
+        </classes>
+    </test>
+</suite>

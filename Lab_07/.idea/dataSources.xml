@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Northwind@localhost" uuid="41d6b99c-e7cb-4919-a685-9cfc7b829678">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost:1433;database=Northwind</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="SOUVENIRS@localhost" uuid="275ececa-716f-444d-9e33-6346f2f3de01">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost:1433;database=SOUVENIRS</jdbc-url>
+    </data-source>
+  </component>
+</project>
