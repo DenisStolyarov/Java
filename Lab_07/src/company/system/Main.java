@@ -26,7 +26,7 @@ public class Main {
         Show(DTO.selectAll());
 
         var a= new ArrayList<Souvenir>((Collection<? extends Souvenir>) DTO.selectAll());
-        var id = a.stream().reduce((first, last)->last).get().getId();
+        var id = a.stream().reduce((first, last)->last).map(Souvenir::getId).orElse(1);
 
         souvenir = DTO.select(id);
         System.out.println("Selected->"+souvenir+"\n------------");

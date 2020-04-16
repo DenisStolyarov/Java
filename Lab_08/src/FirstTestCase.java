@@ -68,7 +68,6 @@ public class FirstTestCase {
     @Test(priority = 1)
     void TestDeposit(int Param){
         var amount = new BigDecimal(Param);
-        System.out.println(Param);
         for (var item : accounts)
         {
             bank.DepositAccount(item.idDTO,  amount);
@@ -101,7 +100,7 @@ public class FirstTestCase {
     }
 
 
-    @Test(timeOut = 2000, priority = 1)
+    @Test(timeOut = 2000, priority = 2)
     void TestCloseAccounts(){
 
         for (var item : accounts)
