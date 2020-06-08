@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>TMI</short-name>
+
+    <tag>
+        <name>TMI1</name>
+        <tag-class>Tags.TMILabledTextField</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>label</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>LoginTag</name>
+        <tag-class>Tags.LoginTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>value</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>TagTable</name>
+        <tag-class>Tags.CreateTable</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>myRow</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>myCol</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <!-- Invoke 'Generate' action to add tags or functions -->
+
+</taglib>

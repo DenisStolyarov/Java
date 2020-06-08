@@ -59,12 +59,12 @@ public class TicTacToe {
 
     @Override
     public String toString() {
-        var builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         int count = 0;
         builder.append(newline);
         for (int i = 0; i < canvas.length; i++) {
             for (int j = 0; j < canvas.length; j++) {
-                var value = canvas[i][j].equals(defaultFiller) ? count : canvas[i][j];
+                String value = canvas[i][j].equals(defaultFiller) ? String.valueOf(count) : canvas[i][j];
                 builder.append(value + "|");
                 count++;
             }

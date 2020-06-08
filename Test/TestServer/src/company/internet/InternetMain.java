@@ -7,7 +7,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
 
-public class Main {
+public class InternetMain {
     public static void main(String[] args) {
         InetAddress currentAddress = null;
         InetAddress customAddress = null;

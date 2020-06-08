@@ -25,7 +25,7 @@ class ServerThread extends Thread {
         try {
             while ((str = is.readLine()) != null) {
 
-                if (this.marker.equals(Main.CurrentMarker) && Main.users.size() == 2) {
+                if (this.marker.equals(GameMain.CurrentMarker) && GameMain.users.size() == 2) {
                     int value;
                     try{
                         value = Integer.valueOf(str);
@@ -34,13 +34,13 @@ class ServerThread extends Thread {
                         os.println("\n\rWrong number!");
                         continue;
                     }
-                    synchronized (Main.game) {
-                        if (!Main.game.fillValue(value, this.marker)) continue;
-                        Main.Notify("\n\r" + this.marker + ":\n\r" + Main.game.toString());
-                        Main.ChangeMarker();
-                        if (Main.game.isGameOver()) {
-                            Main.Notify(this.marker+" win");
-                            Main.isRun = false;
+                    synchronized (GameMain.game) {
+                        if (!GameMain.game.fillValue(value, this.marker)) continue;
+                        GameMain.Notify("\n\r" + this.marker + ":\n\r" + GameMain.game.toString());
+                        GameMain.ChangeMarker();
+                        if (GameMain.game.isGameOver()) {
+                            GameMain.Notify(this.marker+" win");
+                            GameMain.isRun = false;
                         }
                     }
                 }

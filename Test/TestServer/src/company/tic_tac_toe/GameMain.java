@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class Main {
+public class GameMain {
 
     public static boolean isRun = true;
     public static TicTacToe game = new TicTacToe();
@@ -35,7 +35,7 @@ public class Main {
                 Thread.sleep(1000);
             }
             Notify("\n\rGame end.");
-            for (var item : Main.users) {
+            for (ServerThread item : GameMain.users) {
                 item.disconnect();
             }
         } catch (IOException | InterruptedException e) {
@@ -48,7 +48,7 @@ public class Main {
     }
 
     public static void Notify(String message) {
-        for (var item : Main.users) {
+        for (ServerThread item : GameMain.users) {
             item.SendMessage(message);
         }
     }
